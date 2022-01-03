@@ -2,7 +2,7 @@
 
 @section('content')
 @include('layouts.header')
-  
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
@@ -15,12 +15,12 @@
                 ✔️ Profitez de notre disponibilité de 8h00 à 20h00 6/7j<br>
                 ✔️ - 50 € avec le code DIMO50 !⏱️
             </p>
-          <div class="d-flex row text-left">
-              <div class="col-12 col-md-6 mb-4 text-center">
-                <a href="#about" class="btn-get-a-quote">Obtenir mon devis</a>
+          <div class="d-flex row">
+              <div class="col-12 col-md-6 mb-4 text-left btn-hero-section">
+                <a href="" class="btn btn-primary btn-lg">Obtenir mon devis</a>
               </div>
-              <div class="col-12 col-md-6 text-center">
-                <a href="tel:+33756799411" class="btn-get-started">07 56 79 94 11 ☎️</a>
+              <div class="col-12 col-md-6 text-left btn-hero-section">
+                <a href="tel:+33756799411" class="btn btn-lg btn-outline-primary">07 56 79 94 11 ☎️</a>
               </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
               <p class="description">Économisez jusqu'à 150 € sur vos diagnostics immobiliers !</p>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+          <div class="col-lg-3 col-md-6 mt-4">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-card-checklist"></i></div>
               <h4 class="title"><a href="">Dolor Sitema</a></h4>
@@ -78,30 +78,47 @@
 
         <div class="text-center">
           <h3 class="mb-4">Obtenez votre devis rapidement</h3>
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-
-
+          <form action="{{ route('prospect-create') }}" method="post" class="php-email-form">
+            @csrf
               <div class="row">
-                <div class="form-group col-md-6 mt-3 mt-md-0 text-left">
-                  <label for="name" class="text-white">Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-                <div class="form-group col-md-6 mt-3 mt-md-0">
-                  <label for="name" class="text-white">Projet</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <label for="name" class="text-white">Subject</label>
-                  <select type="select" class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <div class="form-group col-md-4 mt-3">
+                  <label for="projet" class="text-white">Projet</label>
+                  <select type="select" class="form-select" name="projet">
+                    <option value="vente">Vente</option>
+                    <option value="location">Location</option>
+                    <option value="avant travaux">Avant travaux</option>
+                    <option value="avant démolition">Avant démolition</option>
                   </select>
+                </div>
+                <div class="form-group col-md-4 mt-3">
+                  <label for="categorie" class="text-white">Catégorie</label>
+                  <select type="select" class="form-select" name="categorie">
+                    <option value="maison">Maison</option>
+                    <option value="appartement">Appartement</option>
+                    <option value="local professionnel">Local professionnel</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4 mt-3">
+                  <label for="surface" class="text-white">Surface<span class="text-danger"> *</span></label>
+                  <input type="text" class="form-control" name="surface" id="surface" value="{{ old('surface') }}" Required>
+                  @error('surface')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+                </div>
               </div>
-             
-              <button type="button" class="cta-btn mt-4" data-target="#exampleModalCenter">Obtenir le prix</button>
+              <div class="row">
+                <div class="form-group col-md-6 mt-3">
+                  <label for="email" class="text-white">Email<span class="text-danger"> *</span></label>
+                  <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}"required>
+                </div>
+                <div class="form-group col-md-6 mt-3">
+                  <label for="telephone" class="text-white">Téléphone<span class="text-danger"> *</span></label>
+                  <input type="text" class="form-control" name="telephone" id="telephone" value="{{ old('telephone') }}" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-lg btn-outline-primary mt-3">Obtenir le prix</button>
           </form>
         </div>
 
@@ -185,7 +202,7 @@
                 <div class="icon"><img src="assets/img/services/dpe_icon.png" alt="diagnostic DPE"></div>
                 <h4 style="color: #9cbe16;">DPE</h4>
                 <p style="color: #444444;">Calcul de la quantité standard d’énergie consommée, classement en fonction de la consommation énergétique et des émissions de gaz à effet de serre</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -195,7 +212,7 @@
                 <div class="icon"><img src="assets/img/services/parasite_icon.png" alt="diagnostic parasites"></div>
                 <h4 style="color: #c89e67;">Parasites</h4>
                 <p style="color: #444444;">Lutte contre les termites et autres insectes xylophages. Lutte contre les termites et autres insectes xylophages</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -205,7 +222,7 @@
                 <div class="icon"><img src="assets/img/services/mesurage_icon.png" alt="diagnostic mesurage"></div>
                 <h4 style="color: #af151e;">Mesurage Boutin</h4>
                 <p style="color: #444444;">Calcul de la surface habitable lors de la mise en location. Calcul de la surface habitable lors de la mise en location</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -215,7 +232,7 @@
                 <div class="icon"><img src="assets/img/services/carrez_icon.png" alt="diagnostic carrez"></div>
                 <h4 style="color: #e10613;">Carrez</h4>
                 <p style="color: #444444;">Mesure de la surface privative du lot (hors cave, garage…), des copropriétés horizontales et verticales.</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -225,7 +242,7 @@
                 <div class="icon"><img src="assets/img/services/amiante_icon.png" alt="diagnostic amiante"></div>
                 <h4 style="color: #ed7c00;">Amiante</h4>
                 <p style="color: #444444;">État mentionnant la présence ou l’absence de matériaux ou produits, figurant sur une liste réglementaire, contenant de l’amiante</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -235,7 +252,7 @@
                 <div class="icon"><img src="assets/img/services/plomb_icon.png" alt="diagnostic plomb"></div>
                 <h4 style="color: #666666;">Plomb</h4>
                 <p style="color: #444444;">Mesure de la concentration en plomb de tous les revêtements et repérer les facteurs de dégradation du bâti permettant d’identifier les situations d’insalubrité</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -245,7 +262,7 @@
                 <div class="icon"><img src="assets/img/services/gaz_icon.png" alt="diagnostic gaz"></div>
                 <h4 style="color: #009f99;">Gaz</h4>
                 <p style="color: #444444;">État de l’installation en vue d’évaluer les risques pouvant porter atteinte à la sécurité des personnes</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -255,7 +272,7 @@
                 <div class="icon"><img src="assets/img/services/electricite_icon.png" alt="diagnostic gaz"></div>
                 <h4 style="color: #ffd400;">Electricité</h4>
                 <p style="color: #444444;">État de l’installation en vue d’évaluer les risques pouvant porter atteinte à la sécurité des personnes</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -265,7 +282,7 @@
                 <div class="icon"><img src="assets/img/services/erp_icon.png" alt="diagnostic ERP"></div>
                 <h4 style="color: #931b80;">ERP</h4>
                 <p style="color: #444444;">Information de l’acquéreur ou du locataire sur la situation du bien immobilier, bâti ou non bâti, au regard de l’ état des risques et pollutions du sol</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -275,7 +292,7 @@
                 <div class="icon"><img src="assets/img/services/acces_icon.png" alt="diagnostic accessibilité"></div>
                 <h4 style="color: #294292;">Accessibilité handicapés</h4>
                 <p style="color: #444444;">Pour rendre accessible les ERP (établissements recevant du publique) aux personnes ayant un handicap</p>
-              </a> 
+              </a>
             </div>
           </div>
 
@@ -611,7 +628,7 @@
                   <label for="name">Your Name</label>
                   <input type="text" name="name" class="form-control" id="name" required>
                 </div>
-                <div class="form-group col-md-6 mt-3 mt-md-0">
+                <div class="form-group col-md-6 mt-3">
                   <label for="name">Your Email</label>
                   <input type="email" class="form-control" name="email" id="email" required>
                 </div>

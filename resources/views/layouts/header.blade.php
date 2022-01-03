@@ -22,10 +22,10 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto " href="#portfolio">Diagnostics obligatoires</a></li>
-          
+
           <li><a class="btn-get-started" href="#">Contactez nous</a></li>
           <li><a class="btn-get-a-quote" href="#">Demander un devis</a></li>
-          
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
