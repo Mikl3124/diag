@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prospect;
+use App\Mail\QuoteRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,7 +36,8 @@ class ProspectController extends Controller
     $prospect->prenom = "inconnu";
 
     if($prospect->save()){
-      dd($prospect);
+      Mail::to(env('MAIL_ADMIN'))
+        ->send(new QuoteRequest($prospect));
     }
 
   }

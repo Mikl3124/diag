@@ -18,8 +18,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Prospects
 Route::post('/prospect-create', 'ProspectController@create')->name('prospect-create');
+
+// Administrateur
+Route::group(['middleware' => ['auth', 'admin']], function () {
+  Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
